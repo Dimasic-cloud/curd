@@ -14,7 +14,7 @@ func UpdatePost(c *fiber.Ctx) error {
 	// если он не верен, то возвращаем ошибку 400
 	if err := c.BodyParser(&post); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": "invalid JSON\n",
+			"error": "invalid JSON",
 		})
 	}
 
@@ -22,7 +22,7 @@ func UpdatePost(c *fiber.Ctx) error {
 	// если они не верны, то возвращаем ошибку 400
 	if err := Validate.Struct(&post); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": "invalid JSON\n",
+			"error": "invalid JSON",
 		})
 	}
 
@@ -31,7 +31,7 @@ func UpdatePost(c *fiber.Ctx) error {
 	// в обратном случае обновляем данные
 	if body := database.DataBase[post.UserName]; body == "" {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
-			"error": "user not found\n",
+			"error": "user not found",
 		})
 	} else {
 		database.DataBase[post.UserName] = post.Body
