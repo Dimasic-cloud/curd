@@ -48,8 +48,8 @@ func TestCreatePostInvalidJSON(t *testing.T) {
 	app.Post("/create", CreatePost)
 
 	// создаём несколько некоректных json запросов
-	invalidJson1 := `{"userName": "dima", "body": 5}`
-	invalidJson2 := `{"userName": 5, "body": "test"}`
+	invalidJson1 := `{"userName": "dima", "body": ""}`
+	invalidJson2 := `{"userName": "", "body": "test"}`
 
 	// создаём запроссы
 	req1 := httptest.NewRequest("POST", "/create", bytes.NewReader([]byte(invalidJson1)))

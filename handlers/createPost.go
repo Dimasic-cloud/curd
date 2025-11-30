@@ -18,14 +18,15 @@ func CreatePost(c *fiber.Ctx) error {
 	// при положительном заносим данные в БД
 	if err := c.BodyParser(&post); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": err.Error() + "\n",
+			"error": "invalid JSON\n",
 		})
 	}
 
-	// валидируем данные в структуре
+	// проверяем попали ли в структуру пустые строки
+	// если да, возвращаем код 400 о невалидных данных
 	if err := Validate.Struct(&post); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": err.Error(),
+			"error": "invalid JSON\n",
 		})
 	}
 
