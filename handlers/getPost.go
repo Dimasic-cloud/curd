@@ -7,7 +7,7 @@ import (
 )
 
 // обработчик для поиска постов по username
-func GetPosts(c *fiber.Ctx) error {
+func GetPost(c *fiber.Ctx) error {
 	// получаем username из запроса
 	userName := c.Params("userName")
 

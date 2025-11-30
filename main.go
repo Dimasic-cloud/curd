@@ -14,7 +14,7 @@ func main() {
 	// обрабатываем post запрос и создаём пользователя с записями
 	app.Post("/create", handlers.CreatePost)
 	// обрабатываем get запрос, чтобы пользователь мог получать свои посты
-	app.Get("/post/:username", handlers.GetPosts)
+	app.Get("/post/:username", handlers.GetPost)
 	// обрабатываем PUT запрос, чтобы пользователь мог обнавить свой пост
 	app.Put("/update", handlers.UpdatePost)
 	// обрабатываем delete запрос, чтобы удолить пользователя с его постом

@@ -1,4 +1,3 @@
 handlers/deletePost.go
 handlers/deletePost_test.go
 handlers/updatePost_test.go
-handlers/getPost_test.go

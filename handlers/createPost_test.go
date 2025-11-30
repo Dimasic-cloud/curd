@@ -26,7 +26,6 @@ func TestCreatePostValidJSON(t *testing.T) {
 	req.Header.Set("Content-Type", "application/json")
 
 	// отправляем запрос к серверу и проверяем ошибку
-
 	resp, err := app.Test(req)
 	assert.NoError(t, err)
 	defer resp.Body.Close()
