@@ -46,21 +46,15 @@ func TestCreatePostInvalidJSON(t *testing.T) {
 	app := fiber.New()
 	app.Post("/create", CreatePost)
 
-	// создаём несколько некоректных json запросов
-	invalidJson1 := `{"userName": "dima", "body": ""}`
-	invalidJson2 := `{"userName": "", "body": "test"}`
+	// создаём некоректный json запрос
+	invalidJson := `{"userName": "", "body": "test"}`
 
-	// создаём запроссы
-	req1 := httptest.NewRequest("POST", "/create", bytes.NewReader([]byte(invalidJson1)))
-	req2 := httptest.NewRequest("POST", "/create", bytes.NewReader([]byte(invalidJson2)))
-	req1.Header.Set("Content-Type", "application/json")
-	req2.Header.Set("Content-Type", "application/json")
+	// создаём запрос
+	req := httptest.NewRequest("POST", "/create", bytes.NewReader([]byte(invalidJson)))
+	req.Header.Set("Content-Type", "application/json")
 
-	// отпавляем запросы на серверр и проверяем полученные ошибки
-	resp1, err1 := app.Test(req1)
-	resp2, err2 := app.Test(req2)
-	assert.NoError(t, err1)
-	assert.NoError(t, err2)
-	assert.Equal(t, fiber.StatusBadRequest, resp1.StatusCode)
-	assert.Equal(t, fiber.StatusBadRequest, resp2.StatusCode)
+	// отпавляем запрос на серверр
+	resp, err := app.Test(req)
+	assert.NoError(t, err)
+	assert.Equal(t, fiber.StatusBadRequest, resp.StatusCode)
 }

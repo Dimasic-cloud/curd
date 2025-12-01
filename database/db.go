@@ -2,7 +2,7 @@ package database
 
 // структура для создания постов
 type Post struct {
-	Body     string `json:"body" validate:"required"`
+	Body     string `json:"body"`
 	UserName string `json:"userName" validate:"required"`
 }
 
